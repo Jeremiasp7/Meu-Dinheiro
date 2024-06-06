@@ -25,7 +25,7 @@ public class UserEntity {
     private UUID id;
 
     @Column(unique = true, nullable = false)
-    private String username;
+    private String email;
 
     @Column(name = "user_password")
     private String password;

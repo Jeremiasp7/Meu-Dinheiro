@@ -44,7 +44,7 @@ public class IncomesEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    private UserEntity userEntity;
+    private UserEntity user;
 
     @Column(name = "category_id")
     private UUID category_id;

@@ -9,9 +9,9 @@ import com.example.meudinheiro.modules.finances.entities.CategoriesEntity;
 import com.example.meudinheiro.modules.finances.entities.ExpensesEntity;
 import com.example.meudinheiro.modules.finances.entities.IncomesEntity;
 
-public interface CategoryRepository extends JpaRepository<CategoryRepository, UUID>{
+public interface CategoryRepository extends JpaRepository<CategoriesEntity, UUID>{
     
-    List<CategoriesEntity> findIncomeByCategory(IncomesEntity income);
+    List<CategoriesEntity> findByIncomesEntity(IncomesEntity income);
 
-    List<CategoriesEntity> findExpenseByCategory(ExpensesEntity expense);
+    List<CategoriesEntity> findByExpensesEntity(ExpensesEntity expense);
 }

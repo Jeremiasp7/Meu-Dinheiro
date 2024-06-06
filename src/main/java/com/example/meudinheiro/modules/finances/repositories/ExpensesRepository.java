@@ -11,5 +11,5 @@ import com.example.meudinheiro.modules.user.entities.UserEntity;
 
 public interface ExpensesRepository extends JpaRepository<ExpensesEntity, UUID> {
     
-    List<ExpensesEntity> findUserAndDateBetween(UserEntity user, LocalDateTime startDate, LocalDateTime endDate); 
+    List<ExpensesEntity> findByUserAndDateBetween(UserEntity user, LocalDateTime startDate, LocalDateTime endDate); 
 }
