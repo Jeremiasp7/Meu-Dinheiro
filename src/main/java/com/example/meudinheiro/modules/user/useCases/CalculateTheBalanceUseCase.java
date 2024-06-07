@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.example.meudinheiro.modules.finances.entities.ExpensesEntity;
+import com.example.meudinheiro.modules.finances.dto.CreateExpensesDTO;
 import com.example.meudinheiro.modules.finances.entities.IncomesEntity;
 import com.example.meudinheiro.modules.finances.useCases.ExpensesForUserUseCase;
 import com.example.meudinheiro.modules.finances.useCases.IncomesForUserUseCase;
@@ -19,11 +19,11 @@ public class CalculateTheBalanceUseCase {
     @Autowired
     private IncomesForUserUseCase incomesForUserUseCase;
 
-    public Double calculatebalance(UserEntity user, LocalDateTime starDateTime, LocalDateTime endDateTime) {
-        List<ExpensesEntity> expenses = expensesForUserUseCase.getExpensesForUser(user, starDateTime, endDateTime);
+    public Double calculateBalance(UserEntity user, LocalDateTime starDateTime, LocalDateTime endDateTime) {
+        List<CreateExpensesDTO> expenses = expensesForUserUseCase.getExpensesForUser(user, starDateTime, endDateTime);
         List<IncomesEntity> incomes = incomesForUserUseCase.getIncomesForUser(user, starDateTime, endDateTime);
 
-        Double totalExpenses = expenses.stream().mapToDouble(ExpensesEntity::getAmount).sum();
+        Double totalExpenses = expenses.stream().mapToDouble(CreateExpensesDTO::getExpensesAmount).sum();
         Double totalIncomes = incomes.stream().mapToDouble(IncomesEntity::getAmount).sum();
 
         return totalIncomes - totalExpenses;
