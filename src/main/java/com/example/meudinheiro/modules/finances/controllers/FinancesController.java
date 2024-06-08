@@ -10,9 +10,8 @@ import com.example.meudinheiro.modules.finances.useCases.ExpensesForUserUseCase;
 import com.example.meudinheiro.modules.finances.useCases.IncomesForUserUseCase;
 import com.example.meudinheiro.modules.user.entities.UserEntity;
 import com.example.meudinheiro.modules.finances.dto.CreateExpensesDTO;
+import com.example.meudinheiro.modules.finances.dto.CreateIncomeDTO;
 import com.example.meudinheiro.modules.user.repositories.UserRepository;
-import com.example.meudinheiro.modules.finances.entities.IncomesEntity;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +38,7 @@ public class FinancesController {
     }    
 
     @GetMapping("/incomes")
-    public List<IncomesEntity> getIncomes(@RequestParam String userEmail, @RequestParam String startDate, @RequestParam String endDate) {
+    public List<CreateIncomeDTO> getIncomes(@RequestParam String userEmail, @RequestParam String startDate, @RequestParam String endDate) {
         UserEntity user = userRepository.findByEmail(userEmail).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
         LocalDateTime starDateTime = LocalDateTime.parse(startDate);
         LocalDateTime endDateTime = LocalDateTime.parse(endDate);
