@@ -24,7 +24,7 @@ public class ExpensesForUserUseCase {
             .expensesDescription(expense.getDescription())
             .expensesAmount(expense.getAmount())
             .expensesDateTime(expense.getDate())
-            .categoryName(expense.getCategory_name())
+            .categoryName(expense.getCategory())
             .build())
         .collect(Collectors.toList());
             

@@ -39,6 +39,9 @@ public class IncomesEntity {
     @CreationTimestamp
     private LocalDateTime date;
 
+    @Column(name = "category")
+    private String category;
+
     @Column(name = "user_id")
     private UUID user_id;
 
@@ -46,10 +49,4 @@ public class IncomesEntity {
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private UserEntity user;
 
-    @Column(name = "category_name")
-    private String category_name;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id", insertable = false, updatable = false)
-    private CategoriesEntity categoriesEntity;
 }

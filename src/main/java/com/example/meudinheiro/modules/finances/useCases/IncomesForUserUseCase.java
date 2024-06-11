@@ -24,7 +24,7 @@ public class IncomesForUserUseCase {
             .incomesDescription(income.getDescription())
             .incomesAmount(income.getAmount())
             .incomesDateTime(income.getDate())
-            .categoryName(income.getCategory_name())
+            .categoryName(income.getCategory())
             .build())
         .collect(Collectors.toList());  
     }

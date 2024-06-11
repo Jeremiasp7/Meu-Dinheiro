@@ -31,7 +31,7 @@ public class NewTransactionUseCase {
                 .description(dto.getDescription())
                 .amount(dto.getAmount())
                 .date(dto.getDateTime())
-                .category_name(dto.getCategoryName())
+                .category(dto.getCategoryName())
                 .user(user)
                 .build();
             expensesRepository.save(expense);
@@ -40,7 +40,7 @@ public class NewTransactionUseCase {
                 .description(dto.getDescription())
                 .amount(dto.getAmount())
                 .date(dto.getDateTime())
-                .category_name(dto.getCategoryName())
+                .category(dto.getCategoryName())
                 .user(user)
                 .build();   
             incomesRepository.save(income);

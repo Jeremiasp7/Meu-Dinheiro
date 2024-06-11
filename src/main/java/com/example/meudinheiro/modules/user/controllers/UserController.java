@@ -3,10 +3,12 @@ package com.example.meudinheiro.modules.user.controllers;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.meudinheiro.modules.user.dto.CreateTransactionDTO;
+import com.example.meudinheiro.modules.user.dto.CreateUserDTO;
 import com.example.meudinheiro.modules.user.entities.UserEntity;
 import com.example.meudinheiro.modules.user.repositories.UserRepository;
 import com.example.meudinheiro.modules.user.useCases.CalculateTheBalanceUseCase;
 import com.example.meudinheiro.modules.user.useCases.NewTransactionUseCase;
+import com.example.meudinheiro.modules.user.useCases.NewUserUseCase;
 
 import java.time.LocalDateTime;
 
@@ -33,6 +35,15 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private NewUserUseCase newUserUseCase;
+
+    @PostMapping
+    public ResponseEntity<UserEntity> createUser(@RequestBody CreateUserDTO dto) {
+        UserEntity user = newUserUseCase.createUser(dto);
+        return ResponseEntity.ok(user);
+    }    
+
     @GetMapping("/balance")
     public Double getBalance(@RequestParam String userEmail, @RequestParam String startDate, @RequestParam String endDate) {
         UserEntity user = userRepository.findByEmail(userEmail).orElseThrow(() -> new RuntimeException("Esse email não existe"));
@@ -47,4 +58,6 @@ public class UserController {
         newTransactionUseCase.createTransaction(dto);
         return ResponseEntity.ok().build();
     }
+
+
 }
