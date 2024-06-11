@@ -3,6 +3,7 @@ package com.example.meudinheiro.modules.user.useCases;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.meudinheiro.modules.user.dto.CreateUserDTO;
@@ -15,11 +16,14 @@ public class NewUserUseCase {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public UserEntity createUser(CreateUserDTO dto) {
         UserEntity user = UserEntity.builder()
             .id(UUID.randomUUID())
             .email(dto.getEmail())
-            .password(dto.getPassword())
+            .password(passwordEncoder.encode(dto.getPassword()))
             .build();
         
         return userRepository.save(user);
