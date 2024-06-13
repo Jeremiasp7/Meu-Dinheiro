@@ -26,21 +26,23 @@ public class NewTransactionUseCase {
     public void createTransaction(CreateTransactionDTO dto) {
         UserEntity user = userRepository.findById(dto.getUserId()).orElseThrow(() -> new RuntimeException("O usuário não foi encontrado"));
 
-        if("ganho".equalsIgnoreCase(dto.getCategoryType())) {
+        if("gasto".equalsIgnoreCase(dto.getCategoryType())) {
             ExpensesEntity expense = ExpensesEntity.builder()
                 .description(dto.getDescription())
                 .amount(dto.getAmount())
                 .date(dto.getDateTime())
                 .category(dto.getCategoryName())
+                .user_id(dto.getUserId())
                 .user(user)
                 .build();
             expensesRepository.save(expense);
-        } else if ("gasto".equalsIgnoreCase(dto.getCategoryType())) {
+        } else if ("ganho".equalsIgnoreCase(dto.getCategoryType())) {
             IncomesEntity income = IncomesEntity.builder()
                 .description(dto.getDescription())
                 .amount(dto.getAmount())
                 .date(dto.getDateTime())
                 .category(dto.getCategoryName())
+                .user_id(dto.getUserId())
                 .user(user)
                 .build();   
             incomesRepository.save(income);

@@ -58,6 +58,4 @@ public class UserController {
         newTransactionUseCase.createTransaction(dto);
         return ResponseEntity.ok().build();
     }
-
-
 }
