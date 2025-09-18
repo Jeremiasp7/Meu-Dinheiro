@@ -9,5 +9,5 @@ import com.example.meudinheiro.modules.user.entities.UserEntity;
 
 public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     
-    public Optional<UserEntity> findByEmail(String email);    
+    public Optional<UserEntity> findByEmail(String email);
 }

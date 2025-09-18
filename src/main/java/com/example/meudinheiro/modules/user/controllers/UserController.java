@@ -6,6 +6,7 @@ import com.example.meudinheiro.modules.user.dto.CreateTransactionDTO;
 import com.example.meudinheiro.modules.user.dto.CreateUserDTO;
 import com.example.meudinheiro.modules.user.entities.UserEntity;
 import com.example.meudinheiro.modules.user.repositories.UserRepository;
+import com.example.meudinheiro.modules.user.useCases.AuthUseCase;
 import com.example.meudinheiro.modules.user.useCases.CalculateTheBalanceUseCase;
 import com.example.meudinheiro.modules.user.useCases.NewTransactionUseCase;
 import com.example.meudinheiro.modules.user.useCases.NewUserUseCase;
@@ -19,8 +20,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
-
 
 @RestController
 @RequestMapping("/user")
@@ -38,10 +37,18 @@ public class UserController {
     @Autowired
     private NewUserUseCase newUserUseCase;
 
+    @Autowired
+    private AuthUseCase authUseCase;
+
     @PostMapping
     public ResponseEntity<UserEntity> createUser(@RequestBody CreateUserDTO dto) {
         UserEntity user = newUserUseCase.createUser(dto);
         return ResponseEntity.ok(user);
+    }    
+
+    @PostMapping("/auth/login")
+    public ResponseEntity<?> login(@RequestBody CreateUserDTO dto) {
+        return ResponseEntity.ok(authUseCase.login(dto));
     }    
 
     @GetMapping("/balance")
